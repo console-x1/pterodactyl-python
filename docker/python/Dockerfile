@@ -7,6 +7,7 @@ FROM python:${PYTHON_VERSION}-slim-${PYTHON_VARIANT}
 
 LABEL org.opencontainers.image.title="Pterodactyl Python"
 LABEL org.opencontainers.image.description="Production Python runtime for Pterodactyl"
+LABEL org.opencontainers.image.source="https://github.com/console-x1/pterodactyl-python"
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
