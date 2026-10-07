@@ -1,0 +1,77 @@
+{
+    "_comment": "Pterodactyl Python Universal Egg v1.0",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2026-10-07T12:00:00+02:00",
+    "name": "Python Universal v1.0",
+    "author": "consolex1@consolex1.com",
+    "description": "Universal Python egg. Automatic venv, dependency install via uv (requirements.txt, pyproject.toml, uv.lock).",
+    "features": [],
+    "docker_images": {
+        "Python 3.14": "ghcr.io/console-x1/pterodactyl-python:3.14",
+        "Python 3.13": "ghcr.io/console-x1/pterodactyl-python:3.13",
+        "Python 3.12": "ghcr.io/console-x1/pterodactyl-python:3.12",
+        "Python 3.11": "ghcr.io/console-x1/pterodactyl-python:3.11",
+        "Python 3.10": "ghcr.io/console-x1/pterodactyl-python:3.10",
+        "Python 3.9": "ghcr.io/console-x1/pterodactyl-python:3.9"
+    },
+    "file_denylist": [],
+    "startup": "python {{PY_FILE}} {{PY_ARGS}}",
+    "config": {
+        "files": "{}",
+        "startup": "{\n    \"done\": \"\",\n    \"userInteraction\": []\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!/bin/bash\nset -e\n\ncd /mnt/server\n\necho \"========================================\"\necho \" Python Universal Installer v1.0\"\necho \"========================================\"\necho \"\"\necho \"[Python] Python: $(python --version 2>&1)\"\necho \"[Python] pip: $(pip --version | awk '{print $2}')\"\n\nif [ -f requirements.txt ]; then\n    echo \"[Python] requirements.txt detected (installed at startup).\"\nelif [ -f uv.lock ]; then\n    echo \"[Python] uv.lock detected (installed at startup).\"\nelif [ -f pyproject.toml ]; then\n    echo \"[Python] pyproject.toml detected (installed at startup).\"\nelse\n    echo \"[Python] No dependencies file found.\"\nfi\n\necho \"\"\necho \"[Python] Installation completed.\"\n",
+            "container": "ghcr.io/console-x1/pterodactyl-python:3.12",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Python File",
+            "description": "Main file to run (e.g. main.py, app.py, bot.py).",
+            "env_variable": "PY_FILE",
+            "default_value": "main.py",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:256",
+            "field_type": "text"
+        },
+        {
+            "name": "Extra Arguments",
+            "description": "Optional arguments appended to the startup command.",
+            "env_variable": "PY_ARGS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:256",
+            "field_type": "text"
+        },
+        {
+            "name": "Requirements File",
+            "description": "Dependencies file used by pip/uv.",
+            "env_variable": "REQUIREMENTS_FILE",
+            "default_value": "requirements.txt",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:128",
+            "field_type": "text"
+        },
+        {
+            "name": "Additional Packages",
+            "description": "Extra pip packages, space-separated (e.g. discord.py aiohttp).",
+            "env_variable": "PY_PACKAGES",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:256",
+            "field_type": "text"
+        }
+    ]
+}
