@@ -50,7 +50,7 @@ if [ -n "${STARTUP}" ]; then
     eval "MODIFIED_STARTUP=\"${RAW_STARTUP}\""
 
     echo "[Python] Starting: ${MODIFIED_STARTUP}"
-    exec bash -c "${MODIFIED_STARTUP}"
+    exec bash -c "exec ${MODIFIED_STARTUP}"
 fi
 
 echo "[Python] No STARTUP command provided."

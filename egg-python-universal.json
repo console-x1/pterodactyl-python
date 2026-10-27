@@ -10,6 +10,7 @@
     "description": "Universal Python egg. Automatic venv, dependency install via uv (requirements.txt, pyproject.toml, uv.lock).",
     "features": [],
     "docker_images": {
+        "Python 3.15": "ghcr.io/console-x1/pterodactyl-python:3.15",
         "Python 3.14": "ghcr.io/console-x1/pterodactyl-python:3.14",
         "Python 3.13": "ghcr.io/console-x1/pterodactyl-python:3.13",
         "Python 3.12": "ghcr.io/console-x1/pterodactyl-python:3.12",

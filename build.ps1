@@ -1,5 +1,5 @@
 param(
-    [string[]]$Versions = @("3.9", "3.10", "3.11", "3.12", "3.13", "3.14")
+    [string[]]$Versions = @("3.9", "3.10", "3.11", "3.12", "3.13", "3.14", "3.15")
 )
 
 $ErrorActionPreference = "Stop"
@@ -11,6 +11,7 @@ $variants = @{
     "3.12" = "trixie"
     "3.13" = "trixie"
     "3.14" = "trixie"
+    "3.15" = "trixie"
 }
 
 foreach ($version in $Versions) {
